@@ -20,7 +20,9 @@ class FileUpload extends StatefulWidget {
 class _FileUploadState extends State<FileUpload> {
   @override
   Widget build(BuildContext context) {
-    return DesktopViews(students: widget.students);
+    return LayoutBuilder(builder: (context, constrain) {
+      return DesktopViews(students: widget.students);
+    });
   }
 }
 
@@ -57,8 +59,8 @@ class _DesktopViewsState extends State<DesktopViews> {
     return LayoutBuilder(builder: (BuildContext context, constrain) {
       if (constrain.maxWidth > 1200) {
         return Container(
-          height: deviceData.height,
-          width: deviceData.width,
+          // height: deviceData.height,
+          // width: deviceData.width,
           alignment: Alignment.center,
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -322,8 +324,8 @@ class _DesktopViewsState extends State<DesktopViews> {
         );
       } else if (constrain.maxWidth > 800 && constrain.maxWidth < 1200) {
         return Container(
-          height: deviceData.height,
-          width: deviceData.width,
+          // height: deviceData.height,
+          // width: deviceData.width,
           alignment: Alignment.center,
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 10.0),

@@ -43,7 +43,7 @@ class _ViewResultState extends State<ViewResult> {
                     height: 0.2 * deviceData.height,
                     child: Row(children: <Widget>[
                       CircleAvatar(
-                        child: Text('${widget.result.result}!'),
+                        child: Text('${widget.result.unique}!'),
                         radius: 32.0,
                       ),
                     ]),

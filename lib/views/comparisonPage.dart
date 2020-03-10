@@ -26,18 +26,35 @@ class _ComparisonPageState extends State<ComparisonPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            NavBar(),
-            Container(
-              height: MediaQuery.of(context).size.height,
-              child: FileUpload(
-                students: widget.students,
+      body: LayoutBuilder(
+        builder: (context, constrain) {
+          if (constrain.maxWidth < 800) {
+            return SingleChildScrollView(
+              child: Container(
+                height: 1.5 * MediaQuery.of(context).size.height,
+                child: Column(
+                  children: <Widget>[
+                    NavBar(),
+                    FileUpload(
+                      students: widget.students,
+                    ),
+                  ],
+                ),
               ),
+            );
+          }
+
+          return Container(
+            child: Column(
+              children: <Widget>[
+                NavBar(),
+                FileUpload(
+                  students: widget.students,
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
