@@ -7,12 +7,6 @@ import '../components/navbar.dart';
 class HomePage extends StatelessWidget {
   static String id = "/home";
 
-  // String _path;
-  // Map<String, String> _paths;
-  // String _extension;
-  // FileType _pickType;
-  // bool _isMutitPicking;
-
   @override
   Widget build(BuildContext context) {
     final deviceData = MediaQuery.of(context).size;

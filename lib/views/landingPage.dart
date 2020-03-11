@@ -1,15 +1,14 @@
-import 'package:essay_checker/components/DesktopView.dart';
-import 'package:essay_checker/components/mobileView.dart';
+import 'package:essay_checker/components/navbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+
+import '../components/DesktopView.dart';
+import '../components/mobileView.dart';
 import 'package:get_it/get_it.dart';
 
 import '../models/authUser.dart';
 import '../models/apiResponseData.dart';
 import '../services/apiServices.dart';
-import './homePage.dart';
 import '../models/records.dart';
-import '../constants.dart';
 
 class LandingPage extends StatefulWidget {
   static String id = "/index";
@@ -20,15 +19,10 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   ApiServices get services => GetIt.I<ApiServices>();
 
-  APIResponse<List<Records>> _apiResponse;
-
-  void getRecords() async {
-    _apiResponse = await services.getAssessmentRecord();
-  }
-
   final formKey = GlobalKey<FormState>();
   final user = AuthUser();
-  bool isLoading = true;
+  bool isHidden = true;
+  // bool isLoading = false;
 
   @override
   void initState() {
@@ -39,37 +33,33 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     final deviceData = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: LayoutBuilder(
         builder: (context, constraints) {
-          if (constraints.maxWidth > 1200) {
-            return DesktopView(
-                login: authenticatUser,
-                deviceData: deviceData,
-                formKey: formKey,
-                user: user,
-                isLoading: isLoading);
-          } else if (constraints.maxWidth > 800 &&
-              constraints.maxWidth < 1200) {
-            return DesktopView(
-                login: authenticatUser,
-                deviceData: deviceData,
-                formKey: formKey,
-                user: user,
-                isLoading: isLoading);
-          } else {
-            return MobileView(
-                deviceData: deviceData,
-                formKey: formKey,
-                user: user,
-                isLoading: isLoading,
-                login: authenticatUser);
+          if (constraints.maxWidth <= 800) {
+            return Column(
+              children: <Widget>[
+                LoginNavBar(),
+                MobileView(
+                    deviceData: deviceData,
+                    formKey: formKey,
+                    user: user,
+                    isLoading: isHidden,
+                    login: authenticatUser),
+              ],
+            );
           }
-          return DesktopView(
-              login: authenticatUser,
-              deviceData: deviceData,
-              formKey: formKey,
-              user: user,
-              isLoading: isLoading);
+          return Column(
+            children: <Widget>[
+              // LoginNavBar(),
+              DesktopView(
+                  login: authenticatUser,
+                  deviceData: deviceData,
+                  formKey: formKey,
+                  user: user,
+                  isLoading: isHidden),
+            ],
+          );
         },
       ),
     );
