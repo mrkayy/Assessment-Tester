@@ -14,6 +14,7 @@ class ApiServices {
   static const loginAPI = "$baseUrl/api/auth/login";
   static const assessmentAPI = "$baseUrl/api/assessment";
   static const studentsAPI = "$baseUrl/api/students";
+  static const recordsAPI = "$baseUrl/api/records";
 
   static const header = {"Content-Type": "application/json"};
 
@@ -34,38 +35,47 @@ class ApiServices {
         (err) => APIResponse<Token>(error: true, errorMessage: "err"));
   }
 
-  Future<APIResponse<List<Records>>> getAssessmentRecord() async {
-    return http.get(studentsAPI, headers: header).then((data) {
+  Future<Assessment> getstudentAssessment() async {
+    return http
+        .get(Uri.encodeFull(assessmentAPI), headers: header)
+        .then((data) {
+      print(data.statusCode);
+      // print(data.body);
       if (data.statusCode == 200) {
+        final response = json.decode(data.body);
+        final result = Assessment.fromJson(response);
+        return result;
+      }
+    }).catchError((err) => print("debug error: " + err));
+  }
+
+  Future<List<Records>> getAssessmentRecord() async {
+    return http.get(recordsAPI, headers: header).then((data) {
+      final records = <Records>[];
+      if (data.statusCode == 200) {
+        // print(data.statusCode);
         final jsonData = json.decode(data.body);
-        final records = <Records>[];
+        // print(jsonData.first['student']);
         for (var item in jsonData) {
           final recordsList = Records(
-            id: item['id'],
-            name: item['name'],
-            lastResult: item['lastResult'],
-            testCount: item['testCount'],
+            // id: item['id'],
+            student: item['student'],
+            unique: item['unique'],
+            similar: item['similar'],
+            result: item['result'],
           );
           records.add(recordsList);
         }
-        return APIResponse<List<Records>>(data: records);
       }
-      return APIResponse<List<Records>>(
-          error: true, errorMessage: "oops! an error occured");
-    }).catchError((err) {
-      print(err);
-      return APIResponse<List<Records>>(
-        error: true,
-        errorMessage: "oops! an error occured {$err}",
-      );
+      return records;
     });
   }
 
-  Future<APIResponse<List<Students>>> getStudents() async {
+  Future<List<Students>> getStudents() async {
     return http.get(studentsAPI, headers: header).then((data) {
-      // print(data.statusCode);
+      final students = <Students>[];
       if (data.statusCode == 200) {
-        final students = <Students>[];
+        // print(data.statusCode);
         final jsonData = json.decode(data.body);
         for (var item in jsonData) {
           final studentsList = Students(
@@ -76,32 +86,30 @@ class ApiServices {
           );
           students.add(studentsList);
         }
-        return APIResponse<List<Students>>(data: students);
       }
-      return APIResponse<List<Students>>(
-          error: true, errorMessage: "oops! an error occured");
-    }).catchError((err) {
-      print(err);
-      return APIResponse<List<Students>>(
-        error: true,
-        errorMessage: "oops! an error occured {$err}",
-      );
+      return students;
     });
   }
 
-  Future<APIResponse<Assessment>> checkSimilarity(Students test) async {
-    return http.post(assessmentAPI, body: test.toMap()).then((data) {
-      print('returned: ${data.statusCode}');
-      var jsonData = json.decode(data.body);
-      var result = Assessment(
-        id: jsonData["id"],
-        unique: jsonData['unique'],
-        result: jsonData["result"],
-        similarity: jsonData['similarity'],
-        similarSections: jsonData['similarSections'],
-        uniqueSections: jsonData['uniqueSections'],
-      );
-      return APIResponse<Assessment>(data: result);
-    });
-  }
+  // Future<APIResponse<Assessment>> getstudentAssessment() async {
+  //   // var result;
+  //   return http.get(assessmentAPI, headers: header).then((response) {
+  //     if (response.statusCode == 200) {
+  //       print('debug: ${response.statusCode}');
+  //       var data = json.decode(response.body);
+  //       final results = Assessment(
+  //         id: data['id'],
+  //         result: data['result'],
+  //         similarity: data['similarity'],
+  //         unique: data['unique'],
+  //         body: data['body'],
+  //       );
+
+  //       print('debug: ${results.result}');
+  //       return APIResponse<Assessment>(data: results);
+  //     }
+  //     return APIResponse<Assessment>(
+  //         error: true, errorMessage: "an error occured");
+  //   });
+  // }
 }

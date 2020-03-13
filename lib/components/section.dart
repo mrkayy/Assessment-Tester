@@ -35,7 +35,7 @@ class Sections extends StatelessWidget {
                             children: [
                               TextSpan(
                                   text:
-                                      "DO YOU NEED A CONFIRM PLAGERIZON IN AN ESSAY?\n\n",
+                                      "DO YOU NEED TO A CONFIRM PLAGIARISM IN AN ESSAY?\n\n",
                                   style: kRichTextDefaultTextStyle.copyWith(
                                       fontSize: 24.0)),
                               TextSpan(
@@ -124,7 +124,7 @@ class Sections extends StatelessWidget {
                             children: [
                               TextSpan(
                                   text:
-                                      "DO YOU NEED A CONFIRM PLAGERIZON IN AN ESSAY?\n\n",
+                                      "DO YOU NEED TO A CONFIRM PLAGIARISM IN AN ESSAY?\n\n",
                                   style: kRichTextDefaultTextStyle.copyWith(
                                       fontSize: 24.0)),
                               TextSpan(

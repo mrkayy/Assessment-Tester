@@ -3,17 +3,26 @@ class Assessment {
   int unique;
   int similarity;
   String result;
-  List<Map<String, dynamic>> uniqueSections;
-  List<Map<String, dynamic>> similarSections;
+  List<Map<String, dynamic>> body;
 
   Assessment({
     this.id,
     this.unique,
     this.result,
     this.similarity,
-    this.similarSections,
-    this.uniqueSections,
+    this.body,
   });
+
+  factory Assessment.fromJson(Map<String, dynamic> map) {
+    return Assessment(
+      id: map["id"],
+      unique: map["unique"],
+      result: map["result"],
+      similarity: map["similarity"],
+      body: map["body"],
+    );
+  }
+
   Map<String, dynamic> toMap() {
     return {};
   }

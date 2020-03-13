@@ -6,24 +6,26 @@ import '../constants.dart';
 
 class MobileView extends StatefulWidget {
   MobileView({
+    @required this.loading,
     @required this.deviceData,
     @required this.formKey,
     @required this.user,
-    @required this.isLoading,
     @required this.login,
   });
 
   Function login;
+
   final Size deviceData;
   final GlobalKey<FormState> formKey;
   final AuthUser user;
-  bool isLoading;
+  bool loading;
 
   @override
   _MobileViewState createState() => _MobileViewState();
 }
 
 class _MobileViewState extends State<MobileView> {
+  bool isLoading = true;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -71,20 +73,20 @@ class _MobileViewState extends State<MobileView> {
                       TextFormField(
                         validator: (e) => e.isEmpty ? "Password" : null,
                         onSaved: (val) => widget.user.password = val,
-                        obscureText: widget.isLoading,
+                        obscureText: isLoading,
                         decoration: kTextFormDecoration.copyWith(
                             hintText: 'your passward',
                             labelText: 'password',
-                            suffixIcon: widget.isLoading
+                            suffixIcon: isLoading
                                 ? IconButton(
                                     icon: Icon(Icons.visibility),
                                     onPressed: () => setState(() {
-                                          widget.isLoading = !widget.isLoading;
+                                          isLoading = !isLoading;
                                         }))
                                 : IconButton(
                                     icon: Icon(Icons.visibility_off),
                                     onPressed: () => setState(() {
-                                          widget.isLoading = !widget.isLoading;
+                                          isLoading = !isLoading;
                                         }))),
                       ),
                     ],
@@ -114,10 +116,20 @@ class _MobileViewState extends State<MobileView> {
                     style: TextStyle(color: Colors.white),
                   ),
                   onPressed: () => widget.login().then((result) {
-                    print(result.data.auth);
-                    print(result.data.token);
-                    Navigator.of(context).pushReplacementNamed(HomePage.id);
-                    //Implement navigation
+                    if (result.error) {
+                      print('Error occured! Please reload');
+                      setState(() {
+                        widget.loading = !widget.loading;
+                      });
+                    } else {
+                      setState(() {
+                        widget.loading = !widget.loading;
+                      });
+                      print(result.data.auth);
+                      print(result.data.token);
+                      Navigator.of(context).pushReplacementNamed(HomePage.id);
+                      //Implement navigation
+                    }
                   }).catchError((err) {
                     print(err);
                   }),

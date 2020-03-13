@@ -1,31 +1,35 @@
 class Records {
   int id;
-  String name;
-  String lastResult;
-  int testCount;
+  String student;
+  String unique;
+  String similar;
+  String result;
 
   Records({
     this.id,
-    this.lastResult,
-    this.name,
-    this.testCount,
+    this.student,
+    this.unique,
+    this.similar,
+    this.result,
   });
 
-  Records.map(dynamic obj) {
-    this.id = obj['id'];
-    this.name = obj['name'];
-    this.lastResult = obj['lastResult'];
-    this.testCount = obj['testCount'];
-  }
+  // Records.map(dynamic obj) {
+  //   this.id = obj['id'];
+  //   this.unique = obj['unique'];
+  //   this.student = obj['student'];
+  //   this.similar = obj['similar'];
+  //   this.result = obj['result'];
+  // }
 
-  Map<String, dynamic> toMap() {
-    var map = new Map<String, dynamic>();
+  // Map<String, dynamic> toMap() {
+  //   var map = new Map<String, dynamic>();
 
-    map["id"] = this.id;
-    map["name"] = this.name;
-    map["lastResult"] = this.lastResult;
-    map["testCount"] = this.testCount;
+  //   map["id"] = this.id;
+  //   map["unique"] = this.unique;
+  //   map["student"] = this.student;
+  //   map["similar"] = this.similar;
+  //   map["result"] = this.result;
 
-    return map;
-  }
+  //   return map;
+  // }
 }

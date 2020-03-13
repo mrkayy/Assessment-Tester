@@ -4,8 +4,8 @@ import 'package:get_it/get_it.dart';
 import './views/homePage.dart';
 import './views/landingPage.dart';
 import './views/comparisonPage.dart';
-import './views/comparisonHistoryPage.dart';
 import './services/apiServices.dart';
+import './views/comparisonHistoryPage.dart';
 
 void setupServiceLocator() {
   GetIt.I.registerLazySingleton(() => ApiServices());

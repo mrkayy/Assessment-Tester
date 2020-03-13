@@ -12,8 +12,9 @@ class DesktopView extends StatefulWidget {
     @required this.user,
     @required this.isLoading,
     @required this.login,
+    @required this.loading,
   });
-
+  bool loading;
   Function login;
   final Size deviceData;
   final GlobalKey<FormState> formKey;
@@ -150,11 +151,21 @@ class _DesktopViewState extends State<DesktopView> {
                                   ),
                                   onPressed: () =>
                                       widget.login().then((result) {
-                                    print(result.data.auth);
-                                    print(result.data.token);
-                                    Navigator.of(context)
-                                        .pushReplacementNamed(HomePage.id);
-                                    //Implement navigation
+                                    if (result.error) {
+                                      print("Error Occured Please reload!");
+                                      setState(() {
+                                        widget.loading = !widget.loading;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        widget.loading = !widget.loading;
+                                      });
+                                      print(result.data.auth);
+                                      print(result.data.token);
+                                      Navigator.of(context)
+                                          .pushReplacementNamed(HomePage.id);
+                                      //Implement navigation
+                                    }
                                   }).catchError((err) {
                                     print(err);
                                   }),
