@@ -97,175 +97,202 @@ class _ComparisonPageState extends State<ComparisonPage> {
           NavBar(),
           Row(
             children: <Widget>[
-              Container(
-                alignment: Alignment.topCenter,
-                width: deviceData.width / 2,
-                // height: deviceData.height,
-                padding: const EdgeInsets.all(36.0),
-                child: Row(
-                  children: <Widget>[
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Container(
-                          width: deviceData.width * 0.85 / 2,
-                          // height: deviceData.height * 0.552,
-                          child: Column(
-                            children: <Widget>[
-                              Card(
-                                child: Column(
-                                  children: <Widget>[
-                                    Container(
-                                      // color: Colors.blueAccent[100],
-                                      margin: const EdgeInsets.only(top: 10.0),
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 10.0,
-                                        horizontal: 45.0,
+              Expanded(
+                child: Container(
+                  alignment: Alignment.center,
+                  // width: deviceData.width / 2,
+                  // height: deviceData.height,
+                  padding: const EdgeInsets.all(36.0),
+                  // margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Row(
+                    children: <Widget>[
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            width: deviceData.width * 0.85 / 2,
+                            // height: deviceData.height * 0.552,
+                            child: Column(
+                              children: <Widget>[
+                                Card(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Container(
+                                        // color: Colors.blueAccent[100],
+                                        margin:
+                                            const EdgeInsets.only(top: 10.0),
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 10.0,
+                                          horizontal: 45.0,
+                                        ),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Text(
+                                              "Select a student",
+                                            ),
+                                            DropdownButton(
+                                              value: _selectedStudents,
+                                              icon: Icon(Icons.person),
+                                              iconSize: 24.0,
+                                              items: _dropDownMenuItems,
+                                              onChanged: onChangedDropDown,
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                      Row(
                                         children: <Widget>[
-                                          Text(
-                                            "Select a student",
+                                          Expanded(
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Icon(Icons.cloud_upload),
+                                                  FlatButton(
+                                                      onPressed: () {},
+                                                      child:
+                                                          Text('upload file')),
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                          DropdownButton(
-                                            value: _selectedStudents,
-                                            icon: Icon(Icons.person),
-                                            iconSize: 24.0,
-                                            items: _dropDownMenuItems,
-                                            onChanged: onChangedDropDown,
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 10.0),
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey[100],
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              10.0)),
+                                                  border: Border.all(
+                                                      width: 1.5,
+                                                      color: Colors.grey[200])),
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Text('FilePath'),
+                                                ],
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Container(
-                                            padding: const EdgeInsets.all(20.0),
-                                            child: Column(
-                                              children: <Widget>[
-                                                Icon(Icons.cloud_upload),
-                                                FlatButton(
-                                                    onPressed: () {},
-                                                    child: Text('upload file')),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 2,
-                                          child: Container(
-                                            margin: const EdgeInsets.only(
-                                                right: 10.0),
-                                            padding: const EdgeInsets.all(20.0),
-                                            color: Colors.blue[100],
-                                            child: Column(
-                                              children: <Widget>[
-                                                Text('FilePath'),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              SizedBox(height: 10.0),
-                              Card(
-                                child: Column(
-                                  children: <Widget>[
-                                    Container(
-                                      // color: Colors.blueAccent[100],
-                                      margin: const EdgeInsets.only(top: 10.0),
-                                      padding: const EdgeInsets.symmetric(
-                                        vertical: 10.0,
-                                        horizontal: 45.0,
+                                SizedBox(height: 10.0),
+                                Card(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Container(
+                                        // color: Colors.blueAccent[100],
+                                        margin:
+                                            const EdgeInsets.only(top: 10.0),
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 10.0,
+                                          horizontal: 45.0,
+                                        ),
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: <Widget>[
+                                            Text(
+                                              "Select a student",
+                                            ),
+                                            DropdownButton(
+                                              value: _selectedStudents,
+                                              icon: Icon(Icons.person),
+                                              iconSize: 24.0,
+                                              items: _dropDownMenuItems,
+                                              onChanged: onChangedDropDown,
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                      Row(
                                         children: <Widget>[
-                                          Text(
-                                            "Select a student",
+                                          Expanded(
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Icon(Icons.cloud_upload),
+                                                  FlatButton(
+                                                      onPressed: () {},
+                                                      child:
+                                                          Text('upload file')),
+                                                ],
+                                              ),
+                                            ),
                                           ),
-                                          DropdownButton(
-                                            value: _selectedStudents,
-                                            icon: Icon(Icons.person),
-                                            iconSize: 24.0,
-                                            items: _dropDownMenuItems,
-                                            onChanged: onChangedDropDown,
+                                          Expanded(
+                                            flex: 2,
+                                            child: Container(
+                                              margin: const EdgeInsets.only(
+                                                  right: 10.0),
+                                              padding:
+                                                  const EdgeInsets.all(20.0),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey[100],
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              10.0)),
+                                                  border: Border.all(
+                                                      width: 1.5,
+                                                      color: Colors.grey[200])),
+                                              child: Column(
+                                                children: <Widget>[
+                                                  Text('FilePath'),
+                                                ],
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Container(
-                                            padding: const EdgeInsets.all(20.0),
-                                            child: Column(
-                                              children: <Widget>[
-                                                Icon(Icons.cloud_upload),
-                                                FlatButton(
-                                                    onPressed: () {},
-                                                    child: Text('upload file')),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Expanded(
-                                          flex: 2,
-                                          child: Container(
-                                            margin: const EdgeInsets.only(
-                                                right: 10.0),
-                                            padding: const EdgeInsets.all(20.0),
-                                            color: Colors.blue[100],
-                                            child: Column(
-                                              children: <Widget>[
-                                                Text('FilePath'),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 15.0),
-                        RaisedButton(
-                          color: Colors.blue,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 35.0, vertical: 10.0),
-                          child: Text(
-                            'Compare',
-                            style: kRichTextDefaultTextStyle.copyWith(
-                                color: Colors.white),
-                          ),
-                          onPressed: () {
-                            getAssessment().then((data) => setState(() {
-                                  _assessmentResult = data;
-                                }));
-                            print('selected: ${_selectedStudents.name}');
-                            print('selected: ${_assessmentResult.result}');
-                          },
-                        )
-                      ],
-                    ),
-                  ],
+                          SizedBox(height: 15.0),
+                          RaisedButton(
+                            color: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0)),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 35.0, vertical: 10.0),
+                            child: Text(
+                              'Compare',
+                              style: kRichTextDefaultTextStyle.copyWith(
+                                  color: Colors.white),
+                            ),
+                            onPressed: () {
+                              //   getAssessment().then((data) => setState(() {
+                              //         _assessmentResult = data;
+                              //       }));
+                              //   print('selected: ${_selectedStudents.name}');
+                              //   print('selected: ${_assessmentResult.result}');
+                            },
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Expanded(
@@ -520,7 +547,13 @@ class _ComparisonPageState extends State<ComparisonPage> {
                                   child: Container(
                                     margin: const EdgeInsets.only(right: 10.0),
                                     padding: const EdgeInsets.all(20.0),
-                                    color: Colors.blue[100],
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey[100],
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0)),
+                                        border: Border.all(
+                                            width: 1.5,
+                                            color: Colors.grey[200])),
                                     child: Column(
                                       children: <Widget>[
                                         Text('FilePath'),
@@ -582,7 +615,13 @@ class _ComparisonPageState extends State<ComparisonPage> {
                                   child: Container(
                                     margin: const EdgeInsets.only(right: 10.0),
                                     padding: const EdgeInsets.all(20.0),
-                                    color: Colors.blue[100],
+                                    decoration: BoxDecoration(
+                                        color: Colors.grey[100],
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10.0)),
+                                        border: Border.all(
+                                            width: 1.5,
+                                            color: Colors.grey[200])),
                                     child: Column(
                                       children: <Widget>[
                                         Text('FilePath'),
